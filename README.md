@@ -320,9 +320,10 @@ npm run dev
    - Or import manually: [Vercel New Project](https://vercel.com/new), select `praneethmorla/typeform-clone`.
    - Set **Root Directory** to `frontend`.
    - Add Environment Variable:
-     - `NEXT_PUBLIC_API_URL` = `https://your-backend.onrender.com`
+     - `NEXT_PUBLIC_API_URL` = `https://typeform-clone-ggvp.onrender.com`
    - Click **Deploy**.
-   - Click **Deploy**.
+
+- **Live Backend API**: [https://typeform-clone-ggvp.onrender.com/docs](https://typeform-clone-ggvp.onrender.com/docs)
 
 ---
 
@@ -336,6 +337,28 @@ docker compose up --build
 
 - Frontend: `http://localhost:3000`
 - Backend API: `http://localhost:8000`
+
+---
+
+## 📌 Assumptions, Mocked Data & Notes
+
+### Assumptions
+1. **Single-Creator Mode (No Auth Barrier)**: To focus on the core Form Builder and Respondent experience, creator authentication (signup/login) is omitted. Workspaces serve as the organizational boundaries for forms.
+2. **Public Respondent Flow**: The respondent experience (`/f/[slug]`) is unauthenticated and open to anyone with the link, mirroring Typeform's public forms.
+3. **Draft vs. Published Gating**: Only forms with `status = 'published'` are accessible to respondents. Draft forms return an unavailable notice.
+4. **Linear Form Flow**: Questions advance in a focused linear sequence. Branching logic was kept out of active execution to prioritize rock-solid stability and 100% working features.
+5. **Curated Themes**: 4 curated Typeform themes (`Pearl White`, `Classic Blue`, `Inky Black`, `Plain Blue`) are supported end-to-end rather than arbitrary hex pickers, ensuring polished aesthetics.
+
+### Mocked vs. Real Data
+* **100% Real Persistence**: All workspaces, forms, questions, and respondent submissions are stored and queried from a relational SQLite database.
+* **No Fake UI**: Every button, modal, dropdown, and toggle in the interface is functional (mock buttons like fake video toggles, fake contact syncs, or dead tabs were intentionally removed).
+* **Initial Seed Data**: On first startup, the database auto-seeds 2 workspaces and 3 sample forms ("Customer Feedback", "Event Registration", "Untitled draft") with existing responses so reviewers can test analytics immediately.
+
+### Technical Notes & Architecture Decisions
+* **Unified Question Component**: `QuestionInput.tsx` is shared between the Studio Builder preview canvas and the live public respondent flow, guaranteeing 100% visual fidelity between edit time and run time.
+* **Dynamic Theme Variable Injection**: Themes inject standard CSS custom properties (`--theme-bg`, `--theme-color`, `--theme-btn`, `--theme-choice-bg`, etc.) on parent containers, ensuring responsive scaling across desktop and mobile.
+* **Non-Destructive Question Updates**: Editing a form updates questions in-place by ID, ensuring historical submission records are preserved even after question text edits.
+* **Dual Validation**: Inputs are validated on the client side (instant feedback) and re-validated server-side in FastAPI before persisting to the database.
 
 ---
 
