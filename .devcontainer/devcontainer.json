@@ -1,0 +1,16 @@
+{
+  "name": "Typeform Clone Studio",
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "forwardPorts": [3000, 8000],
+  "portsAttributes": {
+    "3000": {
+      "label": "Typeform Frontend (Dashboard & Studio)",
+      "onAutoForward": "openBrowser"
+    },
+    "8000": {
+      "label": "Typeform FastAPI Backend",
+      "onAutoForward": "silent"
+    }
+  },
+  "postCreateCommand": "cd backend && python -m venv .venv && ./.venv/bin/pip install -r requirements.txt && cd ../frontend && npm install"
+}
