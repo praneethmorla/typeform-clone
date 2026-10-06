@@ -9,6 +9,8 @@ A full-stack, pixel-crafted clone of **Typeform** featuring multi-workspace mana
 [![SQLite](https://img.shields.io/badge/Database-SQLite3-003B57?style=flat&logo=sqlite)](https://www.sqlite.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fpraneethmorla%2Ftypeform-clone&root-directory=frontend)
+
 ---
 
 ## 📑 Table of Contents
@@ -314,10 +316,12 @@ npm run dev
    - Note down your backend URL (e.g., `https://typeform-backend.onrender.com`).
 
 2. **Frontend on Vercel**:
-   - Import the repository on [Vercel](https://vercel.com).
+   - One-Click Deploy: [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fpraneethmorla%2Ftypeform-clone&root-directory=frontend)
+   - Or import manually: [Vercel New Project](https://vercel.com/new), select `praneethmorla/typeform-clone`.
    - Set **Root Directory** to `frontend`.
    - Add Environment Variable:
      - `NEXT_PUBLIC_API_URL` = `https://your-backend.onrender.com`
+   - Click **Deploy**.
    - Click **Deploy**.
 
 ---
